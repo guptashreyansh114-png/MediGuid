@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" role="img" aria-label="Illustration of a health shield with a heartbeat line and a hospital location pin">
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4da3ff"/>
+      <stop offset="1" stop-color="#1243c9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2f7bff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2f7bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#13213a"/>
+      <stop offset="1" stop-color="#0a1426"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="240" cy="190" r="190" fill="url(#glow)"/>
+  <circle cx="240" cy="190" r="150" fill="none" stroke="#2f7bff" stroke-opacity="0.25" stroke-dasharray="4 8"/>
+  <circle cx="240" cy="190" r="120" fill="none" stroke="#2f7bff" stroke-opacity="0.18"/>
+
+  <!-- shield -->
+  <path d="M240 60 L330 92 V190 C330 250 290 292 240 318 C190 292 150 250 150 190 V92 Z" fill="url(#shield)" stroke="#9cc8ff" stroke-opacity="0.6" stroke-width="2"/>
+  <path d="M240 78 L314 104 V190 C314 240 281 276 240 298 C199 276 166 240 166 190 V104 Z" fill="none" stroke="#ffffff" stroke-opacity="0.25"/>
+
+  <!-- cross -->
+  <path d="M225 120h30v34h34v30h-34v34h-30v-34h-34v-30h34z" fill="#ffffff"/>
+
+  <!-- heartbeat line -->
+  <path d="M20 232h92l22-38 30 76 26-48 22 10h40l22-34 24 60 26-30h96" fill="none" stroke="#5aaeff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- floating card: heart -->
+  <g transform="translate(36 60)">
+    <rect width="104" height="72" rx="14" fill="url(#card)" stroke="#2f7bff" stroke-opacity="0.5"/>
+    <path d="M52 52 C26 34 30 16 42 16 C48 16 52 21 52 24 C52 21 56 16 62 16 C74 16 78 34 52 52 Z" fill="#ff5d73"/>
+    <rect x="16" y="58" width="48" height="5" rx="2.5" fill="#2f7bff" fill-opacity="0.6"/>
+  </g>
+
+  <!-- floating card: location pin -->
+  <g transform="translate(340 250)">
+    <rect width="110" height="88" rx="14" fill="url(#card)" stroke="#2f7bff" stroke-opacity="0.5"/>
+    <path d="M55 18 C41 18 32 28 32 40 C32 56 55 72 55 72 C55 72 78 56 78 40 C78 28 69 18 55 18 Z" fill="#2f7bff"/>
+    <circle cx="55" cy="40" r="9" fill="#ffffff"/>
+  </g>
+
+  <!-- floating card: pills / plus -->
+  <g transform="translate(350 70)">
+    <rect width="96" height="64" rx="14" fill="url(#card)" stroke="#2f7bff" stroke-opacity="0.5"/>
+    <rect x="22" y="22" width="52" height="20" rx="10" fill="#ffffff"/>
+    <rect x="48" y="22" width="26" height="20" rx="10" fill="#2f7bff"/>
+  </g>
+
+  <!-- sparkles -->
+  <circle cx="70" cy="300" r="4" fill="#5aaeff"/>
+  <circle cx="110" cy="330" r="2.5" fill="#9cc8ff"/>
+  <circle cx="430" cy="190" r="3" fill="#9cc8ff"/>
+  <circle cx="190" cy="40" r="3" fill="#5aaeff"/>
+</svg>

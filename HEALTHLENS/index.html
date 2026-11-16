@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediGuide - Disease & Treatment Information Portal</title>
+  <meta name="description" content="Learn about common diseases, symptoms and treatment options, and find hospitals near you.">
+  <meta name="theme-color" content="#04070d">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="emergency-bar" role="note">
+    🚨 Emergency? Call <a href="tel:112"><strong>112</strong></a> (national emergency) or <a href="tel:108"><strong>108</strong></a> (ambulance)
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand"><img src="images/logo.svg" alt="" width="38" height="38"><span>MediGuide</span></a>
+      <button id="menuBtn" class="icon-btn menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <nav id="mainNav" aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#diseases">Diseases</a>
+        <a href="#symptoms">Symptom Checker</a>
+        <a href="#tools">BMI</a>
+        <a href="#hospitals">Find Hospitals</a>
+        <a href="#saved">Saved</a>
+        <a href="#about">About</a>
+      </nav>
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HOME -->
+    <section id="home" class="page">
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Understand your health. Find the right care.</h1>
+          <p>Simple information on common diseases, their symptoms and treatment options, plus hospitals near you.</p>
+          <form id="homeSearchForm" class="search-row" role="search">
+            <input id="homeSearch" type="search" placeholder="Search a disease or symptom, e.g. dengue, fever" aria-label="Search diseases">
+            <button class="btn" type="submit">Search</button>
+          </form>
+        </div>
+        <img class="hero-img" src="images/hero.svg" alt="Illustration of a health shield, heartbeat line and hospital location pin" width="480" height="380">
+      </div>
+
+      <div class="grid three quick">
+        <a class="card quick-card" href="#symptoms"><span class="big">🩺</span><h3>Symptom Checker</h3><p>Select your symptoms and see which conditions may be related.</p></a>
+        <a class="card quick-card" href="#hospitals"><span class="big">🏥</span><h3>Hospitals Near Me</h3><p>Find hospitals close to your location on a live map.</p></a>
+        <a class="card quick-card" href="#tools"><span class="big">⚖️</span><h3>BMI Calculator</h3><p>Check your body mass index and weight category.</p></a>
+      </div>
+
+      <h2>Popular conditions</h2>
+      <div id="popularGrid" class="grid three"></div>
+      <p><a class="btn ghost" href="#diseases">View all diseases →</a></p>
+
+      <div class="tip card">
+        <h3>💡 Health tip of the day</h3>
+        <p id="dailyTip"></p>
+      </div>
+    </section>
+
+    <!-- DISEASE LIST -->
+    <section id="diseases" class="page">
+      <h1>Diseases A-Z</h1>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Search by name, symptom or keyword" aria-label="Search diseases">
+        <select id="categoryFilter" aria-label="Filter by category"><option value="">All categories</option></select>
+      </div>
+      <p id="resultCount" class="muted" aria-live="polite"></p>
+      <div id="diseaseGrid" class="grid three"></div>
+    </section>
+
+    <!-- DISEASE DETAIL -->
+    <section id="detail" class="page">
+      <div id="detailBody"></div>
+    </section>
+
+    <!-- SYMPTOM CHECKER -->
+    <section id="symptoms" class="page">
+      <h1>Symptom Checker</h1>
+      <div class="notice">This tool only shows conditions that share your symptoms. It is <strong>not</strong> a diagnosis. Please see a qualified doctor.</div>
+      <h3>Select what you are experiencing</h3>
+      <div id="symptomChips" class="chips"></div>
+      <div class="row-actions">
+        <button id="checkBtn" class="btn">Check</button>
+        <button id="clearSymptoms" class="btn ghost">Clear</button>
+      </div>
+      <div id="symptomResults" aria-live="polite"></div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="page">
+      <h1>BMI Calculator</h1>
+      <form id="bmiForm" class="card form-card">
+        <label>Weight (kg)
+          <input id="weight" type="number" min="1" max="500" step="0.1" required>
+        </label>
+        <label>Height (cm)
+          <input id="height" type="number" min="30" max="272" step="0.1" required>
+        </label>
+        <button class="btn" type="submit">Calculate BMI</button>
+        <div id="bmiResult" aria-live="polite"></div>
+      </form>
+      <p class="muted">BMI is a general screening measure. It does not consider muscle, age or body type. Talk to a doctor for personal advice.</p>
+    </section>
+
+    <!-- HOSPITALS -->
+    <section id="hospitals" class="page">
+      <h1>Find Hospitals Near You</h1>
+      <img class="banner" src="images/hospital.svg" alt="Illustration of a hospital building and map pin">
+      <div id="specialistNote"></div>
+      <div class="controls">
+        <button id="locateBtn" class="btn">📍 Use my current location</button>
+        <button id="varanasiBtn" class="btn ghost">Use Varanasi city centre</button>
+        <label class="inline">Radius
+          <select id="radius">
+            <option value="3000">3 km</option>
+            <option value="5000" selected>5 km</option>
+            <option value="10000">10 km</option>
+            <option value="20000">20 km</option>
+          </select>
+        </label>
+      </div>
+      <p class="muted">Tip: you can also click anywhere on the map to search around that point.</p>
+      <div id="hospStatus" class="status" aria-live="polite"></div>
+      <div class="hosp-layout">
+        <div id="map" role="application" aria-label="Map of nearby hospitals"></div>
+        <div id="hospitalList" class="hosp-list"></div>
+      </div>
+      <div class="notice">
+        Hospital data comes from OpenStreetMap and may be incomplete. This list does not rank or rate hospitals. Please call to confirm services, doctors and fees before you go. In an emergency, call <a href="tel:108">108</a> or <a href="tel:112">112</a>.
+      </div>
+    </section>
+
+    <!-- SAVED -->
+    <section id="saved" class="page">
+      <h1>Saved Conditions</h1>
+      <div id="savedGrid" class="grid three"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <h1>About This Project</h1>
+      <div class="card prose">
+        <p><img src="images/logo.svg" alt="MediGuide logo" width="64" height="64" style="float:right;margin:0 0 .5rem 1rem;border-radius:14px"><strong>MediGuide</strong> is a college project: an information portal where people can read about common diseases, check which conditions match their symptoms, calculate BMI, and find hospitals near them.</p>
+        <h3>Features</h3>
+        <ul>
+          <li>Disease library with search and category filter</li>
+          <li>Symptom checker and BMI calculator</li>
+          <li>Live nearby hospital finder (browser location, OpenStreetMap data, Leaflet map)</li>
+          <li>Save favourite conditions (stored in your browser)</li>
+          <li>Dark mode and responsive design</li>
+        </ul>
+        <h3>Technologies</h3>
+        <p>HTML5, CSS3, JavaScript (ES6), Geolocation API, Leaflet.js, Overpass API, localStorage.</p>
+        <h3>Sources and disclaimer</h3>
+        <p>Content is summarised from general public health guidance. Add your own references (for example WHO, NHS, Indian Ministry of Health and Family Welfare, ICMR) in your project report. This website is for <strong>educational purposes only</strong> and does not replace professional medical advice, diagnosis or treatment.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Disclaimer:</strong> For educational purposes only. Always consult a qualified doctor. In an emergency call 112 or 108.</p>
+      <p class="muted">© MediGuide - College Project</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
