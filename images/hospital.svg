@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a hospital building and a map pin">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07142e"/>
+      <stop offset="1" stop-color="#0d3b9e"/>
+    </linearGradient>
+    <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b3a73"/>
+      <stop offset="1" stop-color="#0e2247"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="220" fill="url(#sky)"/>
+
+  <!-- grid lines like a map -->
+  <g stroke="#5aaeff" stroke-opacity="0.12">
+    <path d="M0 60H900M0 120H900M0 180H900"/>
+    <path d="M100 0V220M260 0V220M420 0V220M580 0V220M740 0V220"/>
+  </g>
+  <path d="M0 190 C150 150 260 200 420 170 S700 120 900 150" fill="none" stroke="#2f7bff" stroke-opacity="0.45" stroke-width="3" stroke-dasharray="8 8"/>
+
+  <!-- main hospital -->
+  <g transform="translate(560 40)">
+    <rect x="0" y="40" width="180" height="140" fill="url(#bld)" stroke="#2f7bff" stroke-opacity="0.6"/>
+    <rect x="50" y="0" width="80" height="60" fill="url(#bld)" stroke="#2f7bff" stroke-opacity="0.6"/>
+    <path d="M82 8h16v14h14v16H98v14H82V38H68V22h14z" fill="#ffffff"/>
+    <g fill="#5aaeff" fill-opacity="0.85">
+      <rect x="16" y="64" width="24" height="22" rx="3"/><rect x="52" y="64" width="24" height="22" rx="3"/>
+      <rect x="104" y="64" width="24" height="22" rx="3"/><rect x="140" y="64" width="24" height="22" rx="3"/>
+      <rect x="16" y="104" width="24" height="22" rx="3"/><rect x="52" y="104" width="24" height="22" rx="3"/>
+      <rect x="104" y="104" width="24" height="22" rx="3"/><rect x="140" y="104" width="24" height="22" rx="3"/>
+    </g>
+    <rect x="76" y="136" width="28" height="44" rx="3" fill="#ffffff" fill-opacity="0.9"/>
+  </g>
+
+  <!-- small clinics -->
+  <g fill="url(#bld)" stroke="#2f7bff" stroke-opacity="0.45">
+    <rect x="780" y="120" width="80" height="100"/>
+    <rect x="470" y="140" width="70" height="80"/>
+  </g>
+
+  <!-- map pin -->
+  <g transform="translate(300 40)">
+    <ellipse cx="40" cy="150" rx="26" ry="7" fill="#000" fill-opacity="0.35"/>
+    <path d="M40 0 C18 0 4 16 4 36 C4 64 40 140 40 140 C40 140 76 64 76 36 C76 16 62 0 40 0 Z" fill="#2f7bff" stroke="#9cc8ff" stroke-width="2"/>
+    <circle cx="40" cy="36" r="16" fill="#ffffff"/>
+    <path d="M36 26h8v8h8v8h-8v8h-8v-8h-8v-8h8z" fill="#1450e0"/>
+  </g>
+</svg>
